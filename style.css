@@ -1,0 +1,107 @@
+* {
+  margin: 0;
+  font-family: "Rubik", sans-serif;
+  --white: hsl(0, 0%, 100%);
+  --black: hsl(0, 0%, 0%);
+  --grey: hsl(0, 0%, 70%);
+}
+
+.container {
+  display: grid;
+  grid-template-columns: 1fr 3fr 3fr 1fr;
+  grid-template-rows: 3fr repeat(2, 0.5fr) 4fr;
+  height: 100vh;
+  background-image: url("./images/pattern-bg.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.map {
+    grid-row: 2/-1;
+    grid-column: 1/-1;
+    z-index: 50;
+}
+
+.content {
+  grid-row: 1/4;
+  grid-column: 2/4;
+  z-index: 100;
+  display: grid;
+  gap:20px;
+  grid-template-columns: repeat(4,1fr);
+  grid-template-rows: 0.5fr repeat(4,1fr);
+  gap:5px;
+}
+
+.header{
+    grid-column: 2/4;
+    grid-row:2/3;
+    display: grid;
+    align-content: center;
+}
+
+.header h1 {
+  text-align: center;
+  font-weight: 500;
+  color: var(--white);
+}
+
+.details {
+  background-color: var(--white);
+  padding: 4%;
+  border-radius: 15px;
+  box-shadow: 0px 20px 30px -12px rgba(0, 0, 0, 0.31);
+  -webkit-box-shadow: 0px 20px 30px -12px rgba(0, 0, 0, 0.31);
+  -moz-box-shadow: 0px 20px 30px -12px rgba(0, 0, 0, 0.31);
+  z-index: 100;
+  grid-column: 1/5;
+  grid-row: 4/6;
+
+  display: grid;
+  grid-template-columns: repeat(4,1fr);
+  gap:10%;
+}
+.details h2{
+    font-size:0.7rem;
+    text-transform: uppercase; 
+    color: var(--grey);
+    padding-bottom: 12px;
+}
+.details p {
+font-weight: 500;
+font-size: 1.5rem;
+}
+
+
+/* .details > div:first-child{
+    padding-left:10%
+} */
+.details > div:not(:last-child){
+    border-right: 1px solid var(--grey);
+}
+
+form {
+  grid-column: 2/4;
+  grid-row:3/4;
+  display: inline-flex;
+  margin: 2% 0 5% 0;
+}
+input[type="text"] {
+  background-color: var(--white);
+  border: none;
+  border-radius: 10px 0px 0px 10px;
+  padding: 2%;
+  width: 700px;
+   color: hsl(0,0%,45%);
+  font-size: 1rem;
+}
+button {
+  background-color: var(--black);
+  border: none;
+  padding: 3%;
+  border-radius: 0px 10px 10px 0px;
+  width: 35px;
+  color: var(--white);
+  font-weight: 700;
+  cursor: pointer;
+}
