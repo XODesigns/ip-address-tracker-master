@@ -1,18 +1,11 @@
 const form = document.querySelector("form");
-// const ipAdress = document.querySelector(".ip");
-// const locationAddress = document.querySelector(".location");
-// const timezone = document.querySelector(".timezone");
-// const isp = document.querySelector(".isp");
 const searchAddress = document.querySelector("input[type='text']");
 const submitButton = document.querySelector("button");
 const results = document.querySelectorAll(".result");
 
 form.addEventListener("submit", (evt) => {
   evt.preventDefault();
-  if (searchAddress.value !== "") {
-    results[0].innerHTML = searchAddress.value;
-  }
-  searchAddress.value = "";
+  getData();
 });
 
 // Map generator
@@ -29,3 +22,30 @@ L.marker([51.5, -0.09]).addTo(map).openPopup();
 //   // if(submitAddress !== ""){
 //   // }
 // });
+
+function getData() {
+  if (searchAddress.value !== "") {
+    results[0].innerHTML = searchAddress.value;
+
+    let address = searchAddress.value;
+
+    fetch(
+      "https://geo.ipify.org/api/v2/country?apiKey=at_GIUwrgS5ZTCn4TruNJyJ8ZNLQqCaw&ipAddress=" +
+        address
+    )
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(data);
+        const location = data.location.region;
+        const timezone = data.location.timezone;
+        const isp = data.isp;
+        console.log(data.code)
+        
+        results[1].innerHTML = location;
+        results[2].innerHTML = timezone;
+        results[3].innerHTML = isp;
+      });
+      
+  }
+  searchAddress.value = "";
+}
