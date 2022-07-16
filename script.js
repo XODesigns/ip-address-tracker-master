@@ -17,14 +17,14 @@ let icon = L.icon({
 //accessing langitude and latitude
 
 // Map generator
-let map = L.map("map").setView([51.505, -0.09], 13);
+let map = L.map("map").setView([-26.05524, 28.05943], 13);
 
 L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
   attribution:
     '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
 }).addTo(map);
 
-L.marker([51.5, -0.09], {icon:icon}).addTo(map).openPopup();
+
 
 
 function getData() {
@@ -58,15 +58,14 @@ fetch(
         const longitude = data.location.lng
         const latitude = data.location.lat
 
-
+        L.marker([latitude, longitude], {icon:icon}).addTo(map).openPopup();
         results[0].innerHTML = address;
         results[1].innerHTML = `${location} ${postalCode}`;
         results[2].innerHTML = `UTC${timezone}`;
         results[3].innerHTML = isp;
 
         //adding dynamic map.
-        // L.map("map").setView([latitude, longitude], 13);
-        // L.marker([latitude, longitude], {icon:icon}).addTo(map).openPopup();
+
 
       })
       .catch(() => {
