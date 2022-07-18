@@ -181,12 +181,13 @@ input[type="text"] {
 .container{
   grid-template-rows: 1.5fr 0.5fr 0.5fr 4.5fr;
       background-size:cover;
+      padding-top:5%;
 }
   
   .details {
     display: block;
     text-align: center;
-    height: 28vh;
+    height: 220px;
     padding: 5%;
 
   }
