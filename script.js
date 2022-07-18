@@ -17,7 +17,8 @@ let icon = L.icon({
 
 // Map generator
 let map = L.map("map")
-map.setView([-26.05524, 28.05943], 13);
+map.setView([34.04915, -118.09462], 13);
+placeholder()
 
 L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
   attribution:
@@ -48,7 +49,9 @@ function geolocation() {
       }
     })
     .then((data) => {
+      console.log(data)
       const location = data.location.city;
+      const region = data.location.region
       const postalCode = data.location.postalCode;
       const timezone = data.location.timezone;
       const isp = data.isp;
@@ -58,7 +61,7 @@ function geolocation() {
       L.marker([latitude, longitude], { icon: icon }).addTo(map).openPopup();
        map.setView([latitude, longitude], 13);
       results[0].innerHTML = address;
-      results[1].innerHTML = `${location} ${postalCode}`;
+      results[1].innerHTML = `${location}, ${region} ${postalCode}`;
       results[2].innerHTML = `UTC${timezone}`;
       results[3].innerHTML = isp;
     
@@ -76,4 +79,13 @@ function alerts(){
   alertButton.addEventListener("click", ()=>{
     alertPopup.classList.add("hidden")
   })
+}
+
+function placeholder(){
+       L.marker([34.04915, -118.09462], { icon: icon }).addTo(map).openPopup();
+       //  map.setView([34.04915, -118.09462], 13);
+      results[0].innerHTML = "192.212.174.101";
+      results[1].innerHTML = "South San Gabriel, California";
+      results[2].innerHTML = "UTC-07:00";
+      results[3].innerHTML = "Southern California Edison";
 }
