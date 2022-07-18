@@ -226,5 +226,11 @@ input[type="text"] {
     grid-row:4/ -1
   }
 
+    .popup {
+      width:250px;
+      font-size: 1rem;
+
+    }
+
 
 }
